@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Деталі авто</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Додаткові стилі для сторінки деталей */
+        .details-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: var(--text-color);
+        }
+        .details-container h2 {
+            text-align: left;
+            margin-bottom: 20px;
+            color: var(--light-neutral);
+        }
+        .details-slider {
+            width: 100%;
+            height: 400px; /* Більша висота для слайдера деталей */
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .details-slider .slider-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        .details-slider .slider-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .details-slider .slider-nav-button {
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 15px;
+            font-size: 2rem;
+        }
+        .details-info p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .details-info strong {
+            color: var(--accent-gold);
+        }
+        .back-button {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Меню</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Головна сторінка</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="favorites.html">Мої обрані</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Авто
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Бренди авто від A до Z</a></li>
+                            <li><a class="dropdown-item" href="#">Бренди авто від Z до A</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Підтримка</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Про нас</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Search" id="search-input"/>
+                    <button class="btn btn-outline-success" type="submit">Пошук</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container details-container">
+        <div id="car-details-content">
+            <p style="text-align: center;">Завантаження інформації про автомобіль...</p>
+        </div>
+        <div class="back-button">
+            <a href="index.html" class="btn btn-primary">Повернутися до каталогу</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Дублюємо дані автомобілів тут, або завантажуємо їх з окремого JSON файлу
+            // В реальному проекті це краще робити з одного місця (API або спільний JS-файл)
+            const cars = [
+                {
+                    id: 'lexus-lfa', brand: 'Lexus', model: 'LFA', year: 2010, price: 750000, mileage: 15000, bodyType: 'Купе',
+                    description: 'Легендарний суперкар початку 10-их років. Ручна збірка, унікальний звук двигуна V10.',
+                    images: [
+                        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Lexus_LFA_%28V10%29_-_Flickr_-_The_Car_Spy_%2827%29.jpg/1920px-Lexus_LFA_%28V10%29_-_Flickr_-_The_Car_Spy_%2827%29.jpg',
+                        'https://cdn.motor1.com/images/mgl/zYwE4/s1/2012-lexus-lfa-roadster-concept.jpg',
+                        'https://www.topgear.com/sites/default/files/images/news-article/2010/06/13597-LexusLFA.jpg'
+                    ]
+                },
+                {
+                    id: 'jaguar-f-type', brand: 'Jaguar', model: 'F-Type R', year: 2015, price: 85000, mileage: 40000, bodyType: 'Купе',
+                    description: 'Рідкісний суперкар зі своїм шармом та потужним двигуном.',
+                    images: [
+                        'https://cdn.motor1.com/images/mgl/Z3j63/s1/2014-jaguar-f-type-r-coupe.jpg',
+                        'https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/gallery_slide/public/jaguar-f-type-r-coupe-2015-first-drive-review-front-three-quarter.jpg?itok=x-0-9-w-0-2'
+                    ]
+                },
+                {
+                    id: 'jaguar-xkr', brand: 'Jaguar', model: 'XKR', year: 2008, price: 45000, mileage: 70000, bodyType: 'Купе',
+                    description: 'Захопливе поєднання потужності та вишуканої розкоші.',
+                    images: ['https://cdn.motor1.com/images/mgl/qjN1N/s1/2007-jaguar-xkr.jpg']
+                },
+                {
+                    id: 'mazda-rx8', brand: 'Mazda', model: 'RX8', year: 2009, price: 18000, mileage: 120000, bodyType: 'Купе',
+                    description: 'Роторна революція. Унікальний спортивний автомобіль.',
+                    images: ['https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Mazda_RX-8.JPG/1280px-Mazda_RX-8.JPG']
+                },
+                {
+                    id: 'dodge-charger-srt8', brand: 'Dodge', model: 'Charger SRT8', year: 2008, price: 35000, mileage: 85000, bodyType: 'Седан',
+                    description: 'Сідай за кермо. Відроджуйся. Американська мрія на чотирьох колесах.',
+                    images: ['https://www.americanmusclecarz.com/vehicles/88/2008-dodge-charger-srt8.jpg']
+                },
+                {
+                    id: 'lamborghini-gallardo', brand: 'Lamborghini', model: 'Gallardo', year: 2012, price: 180000, mileage: 25000, bodyType: 'Купе',
+                    description: 'Один з легендарних авто компанії Lamborghini з прекрасним двигуном V10.',
+                    images: ['https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Lamborghini_Gallardo_LP_560-4_Spyder_%28Facelift%29_%E2%80%93_Frontansicht_%282%29%2C_28._M%C3%A4rz_2013%2C_D%C3%BCsseldorf.jpg/1200px-Lamborghini_Gallardo_LP_560-4_Spyder_%28Facelift%29_%E2%80%93_Frontansicht_%282%29%2C_28._M%C3%A4rz_2013%2C_D%C3%BCsseldorf.jpg']
+                },
+                {
+                    id: 'lamborghini-murcielago', brand: 'Lamborghini', model: 'Murcielago LP640-4 Coupe', year: 2007, price: 250000, mileage: 20000, bodyType: 'Купе',
+                    description: 'Один з легендарних авто компанії Lamborghini з прекрасним двигуном V12.',
+                    images: ['https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Lamborghini_Murci%C3%A9lago_LP640_coupe_side.jpg/1280px-Lamborghini_Murci%C3%A9lago_LP640_coupe_side.jpg']
+                },
+                {
+                    id: 'lamborghini-huracan', brand: 'Lamborghini', model: 'Huracan Spyder', year: 2018, price: 280000, mileage: 10000, bodyType: 'Кабріолет',
+                    description: 'Авто, натхнене іспанським бійцівським биком.',
+                    images: ['https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/10375019/20180307_lambo_huracanspyder_vladsavov12.jpg?quality=90&strip=all&crop=16.666666666667,0,66.666666666667,100']
+                },
+                {
+                    id: 'nissan-gt-r', brand: 'Nissan', model: 'GT-R R35', year: 2020, price: 110000, mileage: 5000, bodyType: 'Купе',
+                    description: 'Ікона сучасних спортивних авто, що ламає стереотипи.',
+                    images: ['https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Nissan_GT-R_R35_front.jpg/1200px-Nissan_GT-R_R35_front.jpg']
+                },
+                {
+                    id: 'nissan-370z', brand: 'Nissan', model: '370Z', year: 2017, price: 32000, mileage: 30000, bodyType: 'Купе',
+                    description: 'Потужність, Пристрасть, Продуктивність в одному флаконі.',
+                    images: ['https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Nissan_370Z.JPG/960px-Nissan_370Z.JPG']
+                },
+                {
+                    id: 'porsche-911', brand: 'Porsche', model: '911 Turbo S (992)', year: 2022, price: 250000, mileage: 2000, bodyType: 'Купе',
+                    description: 'Унікальний авто зі своєю унікальною історією та неперевершеною динамікою.',
+                    images: ['https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ijsxlvQB.bu8/v0/-1x-1.webp']
+                },
+                {
+                    id: 'mercedes-slr', brand: 'Mercedes-Benz', model: 'SLR McLaren', year: 2004, price: 350000, mileage: 18000, bodyType: 'Купе',
+                    description: 'Рідкісний Mercedes-Benz з 20-річною історією, результат співпраці двох легенд.',
+                    images: ['https://upload.wikimedia.org/wikipedia/commons/8/8b/Mercedes-Benz_SLR_McLaren_2.jpg']
+                },
+                {
+                    id: 'corvette-c6-z06', brand: 'Chevrolet', model: 'Corvette C6 Z06', year: 2012, price: 60000, mileage: 50000, bodyType: 'Купе',
+                    description: 'Легендарний авто з легендарним двигуном, справжній американський масл-кар.',
+                    images: ['https://www.lingenfelter.com/mm5/graphics/00000001/3/C6_Corvette_Z06_427_CID_LS7_660_HP_Package_540x540.png']
+                },
+                {
+                    id: 'corvette-c7-zr1', brand: 'Chevrolet', model: 'Corvette C7 ZR1', year: 2019, price: 130000, mileage: 10000, bodyType: 'Купе',
+                    description: 'Продовження легендарної історії легендарного масл-кару, з ще більшою потужністю.',
+                    images: ['https://darwinproaero.com/cdn/shop/products/1_188b7aa7-3578-4641-a6e9-fbb6948eea42_1024x1024.jpg?v=1749728206']
+                },
+                {
+                    id: 'corvette-c8-zr1', brand: 'Chevrolet', model: 'Corvette C8 ZR1', year: 2024, price: 180000, mileage: 500, bodyType: 'Купе',
+                    description: 'Нове покоління Corvette з середньомоторною компоновкою, інновації та потужність.',
+                    images: ['https://speednik.s3.amazonaws.com/powerautorax55/wp-content/blogs.dir/1/files/2024/06/chevrolet-teases-possible-twin-turbo-zr1-c8-corvette-2024-06-03_13-54-36_373859.png']
+                },
+                {
+                    id: 'ferrari-f355', brand: 'Ferrari', model: 'F355', year: 1998, price: 150000, mileage: 60000, bodyType: 'Купе',
+                    description: 'Один із легендарних Ferrari старої школи, з неперевершеним дизайном.',
+                    images: ['https://maessencsc.com/wp-content/uploads/gallery/39289077/39289077-6.jpg']
+                },
+                {
+                    id: 'range-rover-svr', brand: 'Land Rover', model: 'Range Rover SVR', year: 2015, price: 70000, mileage: 65000, bodyType: 'Позашляховик',
+                    description: 'Британський спортивний кросовер, поєднання розкоші та динаміки.',
+                    images: ['https://www.cnet.com/a/img/resize/6e32ea2c080370d66f3f06fea5ace9ea1f7dce57/hub/2015/08/05/b801da55-42ed-4f87-b2ed-9c9267f2da45/landroverrangeroversvr-4.jpg?auto=webp&fit=crop&height=900&width=1200']
+                },
+                {
+                    id: 'dodge-viper-srt10-acr', brand: 'Dodge', model: 'Viper SRT10 ACR', year: 2008, price: 120000, mileage: 12000, bodyType: 'Купе',
+                    description: 'Екзотичний суперкар у єдиному екземплярі, створений для треку.',
+                    images: ['https://www.supercars.net/blog/wp-content/uploads/2016/04/2008_Dodge_ViperSRT10ACR1.jpg']
+                },
+                {
+                    id: 'dodge-srt-viper-gts', brand: 'Dodge', model: 'SRT Viper GTS', year: 2013, price: 90000, mileage: 28000, bodyType: 'Купе',
+                    description: '640-сильна смертельна пастка, справжній американський звір.',
+                    images: ['https://hips.hearstapps.com/autoweek/assets/s3fs-public/121009991.jpg']
+                },
+                {
+                    id: 'bugatti-chiron', brand: 'Bugatti', model: 'Chiron Super Sport', year: 2023, price: 3500000, mileage: 1000, bodyType: 'Купе',
+                    description: 'Гіперкар, легендарність якого неможливо переоцінити, вершина інженерної думки.',
+                    images: ['https://www.netcarshow.com/Bugatti-Chiron_Super_Sport_300-2021-1280-355cb16c22db487fd939ee88b09bd2d46d.jpg']
+                }
+            ];
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = urlParams.get('id');
+            const carDetailsContent = document.getElementById('car-details-content');
+
+            if (carId) {
+                const car = cars.find(c => c.id === carId);
+
+                if (car) {
+                    carDetailsContent.innerHTML = `
+                        <h2>${car.brand} ${car.model} (${car.year})</h2>
+                        <div class="details-slider car-slider" data-car-id="${car.id}">
+                            <div class="slider-images">
+                                </div>
+                            </div>
+                        <div class="details-info">
+                            <p><strong>Ціна:</strong> $${car.price.toLocaleString()}</p>
+                            <p><strong>Пробіг:</strong> ${car.mileage.toLocaleString()} км</p>
+                            <p><strong>Тип кузова:</strong> ${car.bodyType}</p>
+                            <p><strong>Опис:</strong> ${car.description}</p>
+                        </div>
+                    `;
+                    initializeDetailsSlider(car.images, carDetailsContent.querySelector('.details-slider'));
+                } else {
+                    carDetailsContent.innerHTML = '<p style="text-align: center;">Автомобіль не знайдено.</p>';
+                }
+            } else {
+                carDetailsContent.innerHTML = '<p style="text-align: center;">Не вказано ID автомобіля.</p>';
+            }
+
+            // Функція для ініціалізації слайдера на сторінці деталей
+            function initializeDetailsSlider(images, sliderElement) {
+                const sliderImagesContainer = sliderElement.querySelector('.slider-images');
+                let currentIndex = 0;
+
+                sliderImagesContainer.innerHTML = ''; // Очищаємо перед додаванням
+                images.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = "Car Image";
+                    sliderImagesContainer.appendChild(img);
+                });
+
+                const currentImages = sliderImagesContainer.querySelectorAll('img');
+
+                if (currentImages.length > 1) {
+                    const prevBtn = document.createElement('button');
+                    prevBtn.className = 'slider-nav-button prev';
+                    prevBtn.innerHTML = '&#10094;';
+                    sliderElement.appendChild(prevBtn);
+
+                    const nextBtn = document.createElement('button');
+                    nextBtn.className = 'slider-nav-button next';
+                    nextBtn.innerHTML = '&#10095;';
+                    sliderElement.appendChild(nextBtn);
+
+                    prevBtn.addEventListener('click', () => {
+                        currentIndex = (currentIndex > 0) ? currentIndex - 1 : currentImages.length - 1;
+                        updateSlider();
+                    });
+
+                    nextBtn.addEventListener('click', () => {
+                        currentIndex = (currentIndex < currentImages.length - 1) ? currentIndex + 1 : 0;
+                        updateSlider();
+                    });
+                }
+
+                function updateSlider() {
+                    const imageWidth = currentImages[0].clientWidth;
+                    sliderImagesContainer.style.transform = `translateX(${-currentIndex * imageWidth}px)`;
+                }
+
+                window.addEventListener('resize', updateSlider);
+                updateSlider();
+            }
+        });
+    </script>
+    <footer>Джерело: Google. За питаннями звертайтеся за номером +380974754398</footer>
+</body>
+</html>
