@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Автосалон онлайн</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Меню</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Головна сторінка</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="favorites-link">Мої обрані</a> </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Авто
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Бренди авто від A до Z</a></li>
+                            <li><a class="dropdown-item" href="#">Бренди авто від Z до A</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Підтримка</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Про нас</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Search" id="search-input"/>
+                    <button class="btn btn-outline-success" type="submit" id="search-button">Пошук</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Автосалон онлайн - купуй авто, не виходячи з дому</h1>
+    <h2>Каталог</h2>
+
+    <div class="container my-4">
+        <div class="controls row g-3">
+            <div class="col-md-3">
+                <select id="brand-filter" class="form-select">
+                    <option value="">Усі марки</option>
+                    </select>
+            </div>
+            <div class="col-md-3">
+                <select id="year-filter" class="form-select">
+                    <option value="">Усі роки</option>
+                    </select>
+            </div>
+            <div class="col-md-3">
+                <select id="price-sort" class="form-select">
+                    <option value="">Сортувати за ціною</option>
+                    <option value="price-asc">Від дешевих до дорогих</option>
+                    <option value="price-desc">Від дорогих до дешевих</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="name-sort" class="form-select">
+                    <option value="">Сортувати за назвою</option>
+                    <option value="name-asc">А-Я</option>
+                    <option value="name-desc">Я-А</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="number" id="min-price" class="form-control" placeholder="Мін. ціна ($)" min="0">
+            </div>
+            <div class="col-md-3">
+                <input type="number" id="max-price" class="form-control" placeholder="Макс. ціна ($)" min="0">
+            </div>
+            <div class="col-md-3">
+                <input type="number" id="min-mileage" class="form-control" placeholder="Мін. пробіг (км)" min="0">
+            </div>
+            <div class="col-md-3">
+                <input type="number" id="max-mileage" class="form-control" placeholder="Макс. пробіг (км)" min="0">
+            </div>
+        </div>
+    </div>
+
+    <div class="products-grid" id="products-grid">
+        </div>
+
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center" id="pagination-controls">
+            </ul>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="script.js"></script> <footer>Джерело: Google. За питаннями звертайтеся за номером +380974754398</footer>
+</body>
+</html>
