@@ -5,8 +5,8 @@
 
 .controls .form-select,
 .controls .form-control {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     border: 1px solid var(--border-color);
     padding: 0.75rem 1.25rem;
     height: auto;
@@ -130,3 +130,4 @@
     min-width: 280px;
     max-width: 320px;
 }
+
