@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. ДАНІ АВТОМОБІЛІВ (ЗАМІНИ URL-АДРЕСИ ЗОБРАЖЕНЬ НА РЕАЛЬНІ!)
+vdocument.addEventListener('DOMContentLoaded', () => {
     const cars = [
         {
             id: 'lexus-lfa', brand: 'Lexus', model: 'LFA', year: 2010, price: 750000, mileage: 15000, bodyType: 'Купе',
@@ -48,14 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'lamborghini-gallardo', brand: 'Lamborghini', model: 'Gallardo', year: 2012, price: 180000, mileage: 25000, bodyType: 'Купе',
             description: 'Один з легендарних авто компанії Lamborghini з прекрасним двигуном V10.',
-            image: [
-                    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Lamborghini_Murci%C3%A9lago_LP-640_-_Flickr_-_Alexandre_Pr%C3%A9vot_%2840%29.jpg/960px-Lamborghini_Murci%C3%A9lago_LP-640_-_Flickr_-_Alexandre_Pr%C3%A9vot_%2840%29.jpg'             
-    ], 
+            image: ['https://hips.hearstapps.com/hmg-prod/images/gallardo-31-6442d3da29a30.jpg'], 
         },
         {
             id: 'lamborghini-murcielago', brand: 'Lamborghini', model: 'Murcielago LP640-4 Coupe', year: 2007, price: 250000, mileage: 20000, bodyType: 'Купе',
             description: 'Один з легендарних авто компанії Lamborghini з прекрасним двигуном V12.',
-            images: ['https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Lamborghini_Murci%C3%A9lago_LP640_coupe_side.jpg/1280px-Lamborghini_Murci%C3%A9lago_LP640_coupe_side.jpg']
+            images: ['https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Gray_Lamborghini_LP640.jpg/1200px-Gray_Lamborghini_LP640.jpg']
         },
         {
             id: 'lamborghini-huracan', brand: 'Lamborghini', model: 'Huracan Spyder', year: 2018, price: 280000, mileage: 10000, bodyType: 'Кабріолет',
@@ -65,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'nissan-gt-r', brand: 'Nissan', model: 'GT-R R35', year: 2020, price: 110000, mileage: 5000, bodyType: 'Купе',
             description: 'Ікона сучасних спортивних авто, що ламає стереотипи.',
-            images: ['https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Nissan_GT-R_R35_front.jpg/1200px-Nissan_GT-R_R35_front.jpg']
+            images: ['https://i.infocar.ua/i/12/5057/1200x800.jpg']
         },
         {
             id: 'nissan-370z', brand: 'Nissan', model: '370Z', year: 2017, price: 32000, mileage: 30000, bodyType: 'Купе',
@@ -90,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'corvette-c7-zr1', brand: 'Chevrolet', model: 'Corvette C7 ZR1', year: 2019, price: 130000, mileage: 10000, bodyType: 'Купе',
             description: 'Продовження легендарної історії легендарного масл-кару, з ще більшою потужністю.',
-            images: ['https://darwinproaero.com/cdn/shop/products/1_188b7aa7-3578-4641-a6e9-fbb6948eea42_1024x1024.jpg?v=1749728206']
+            images: ['https://lapmeta.com/storage/vi-images/NQ34s0wVVE.jpeg']
         },
         {
             id: 'corvette-c8-zr1', brand: 'Chevrolet', model: 'Corvette C8 ZR1', year: 2024, price: 180000, mileage: 500, bodyType: 'Купе',
@@ -100,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'ferrari-f355', brand: 'Ferrari', model: 'F355', year: 1998, price: 150000, mileage: 60000, bodyType: 'Купе',
             description: 'Один із легендарних Ferrari старої школи, з неперевершеним дизайном.',
-            images: ['https://maessencsc.com/wp-content/uploads/gallery/39289077/39289077-6.jpg']
+            images: ['https://upload.wikimedia.org/wikipedia/commons/b/b9/Ferrari_F355_Berlinetta_1X7A7333.jpg']
         },
         {
             id: 'range-rover-svr', brand: 'Land Rover', model: 'Range Rover SVR', year: 2015, price: 70000, mileage: 65000, bodyType: 'Позашляховик',
@@ -124,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Отримання посилань на елементи DOM
     const productsGrid = document.getElementById('products-grid');
     const brandFilter = document.getElementById('brand-filter');
     const yearFilter = document.getElementById('year-filter');
@@ -133,28 +129,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
 
-    // Нові елементи для фільтрації за діапазоном
     const minPriceInput = document.getElementById('min-price');
     const maxPriceInput = document.getElementById('max-price');
     const minMileageInput = document.getElementById('min-mileage');
     const maxMileageInput = document.getElementById('max-mileage');
 
-    // Елементи пагінації
     const paginationControls = document.getElementById('pagination-controls');
-    const carsPerPage = 9; // Кількість авто на сторінці
+    const carsPerPage = 9;
     let currentPage = 1;
 
-    let displayedCars = [...cars]; // Копія масиву для відображення, яку будемо фільтрувати/сортувати
-    let favoriteCars = JSON.parse(localStorage.getItem('favoriteCars')) || []; // Завантажуємо обрані з localStorage
+    let displayedCars = [...cars];
+    let favoriteCars = JSON.parse(localStorage.getItem('favoriteCars')) || [];
 
-    // --- Функції для генерації та відображення карток ---
-
-    // Генерує HTML для слайдера зображень
     function generateSliderHtml(images, carId) {
         if (!images || images.length === 0) {
-            return `<img src="https://via.placeholder.com/286x200?text=No+Image" class="card-img-top" alt="Немає зображення">`;
+            return `<img src="https://hips.hearstapps.com/hmg-prod/images/gallardo-31-6442d3da29a30.jpg" class="card-img-top" alt="Немає зображення">`;
         }
-        // Використовуємо перше зображення для картки
         return `
             <div class="car-slider" data-car-id="${carId}">
                 <div class="slider-images">
@@ -164,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Генерує HTML для однієї картки автомобіля
     function generateCarCardHTML(car) {
         const isFavorite = favoriteCars.includes(car.id);
         const favoriteClass = isFavorite ? 'active' : '';
@@ -187,9 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Відображає картки на сторінці
     function displayCars(carsToDisplay) {
-        productsGrid.innerHTML = ''; // Очищаємо контейнер
+        productsGrid.innerHTML = '';
         if (carsToDisplay.length === 0) {
             productsGrid.innerHTML = '<p style="text-align: center; width: 100%; color: var(--text-color);">На жаль, за вашим запитом автомобілів не знайдено.</p>';
             return;
@@ -204,28 +192,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         updatePagination(carsToDisplay.length);
-        initializeSliders(); // Ініціалізуємо слайдери після додавання карток
-        addFavoriteButtonListeners(); // Додаємо слухачі для кнопок "Обране"
+        initializeSliders();
+        addFavoriteButtonListeners();
     }
 
-    // --- Функції для фільтрації та пошуку ---
-
     function applyFiltersAndSearch() {
-        let filtered = [...cars]; // Починаємо з повного списку
+        let filtered = [...cars];
 
-        // Фільтрація за маркою
         const selectedBrand = brandFilter.value;
         if (selectedBrand) {
             filtered = filtered.filter(car => car.brand === selectedBrand);
         }
 
-        // Фільтрація за роком
         const selectedYear = yearFilter.value;
         if (selectedYear) {
             filtered = filtered.filter(car => car.year === parseInt(selectedYear));
         }
 
-        // Фільтрація за діапазоном ціни
         const minPrice = parseFloat(minPriceInput.value);
         const maxPrice = parseFloat(maxPriceInput.value);
         if (!isNaN(minPrice)) {
@@ -235,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
             filtered = filtered.filter(car => car.price <= maxPrice);
         }
 
-        // Фільтрація за діапазоном пробігу
         const minMileage = parseFloat(minMileageInput.value);
         const maxMileage = parseFloat(maxMileageInput.value);
         if (!isNaN(minMileage)) {
@@ -245,7 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
             filtered = filtered.filter(car => car.mileage <= maxMileage);
         }
 
-        // Пошук за ключовими словами
         const searchTerm = searchInput.value.toLowerCase().trim();
         if (searchTerm) {
             filtered = filtered.filter(car =>
@@ -255,22 +236,19 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         }
 
-        displayedCars = filtered; // Оновлюємо масив для сортування
-        currentPage = 1; // Скидаємо на першу сторінку при зміні фільтрів/пошуку
-        applySorting(); // Застосовуємо сортування до відфільтрованих авто
+        displayedCars = filtered;
+        currentPage = 1;
+        applySorting();
     }
-
-    // --- Функції для сортування ---
 
     function applySorting() {
         const priceSortValue = priceSort.value;
         const nameSortValue = nameSort.value;
 
-        // Скидаємо інші сортування, якщо одне вибрано
         if (priceSortValue !== '') {
-            nameSort.value = ''; // Скидаємо сортування за назвою
+            nameSort.value = '';
         } else if (nameSortValue !== '') {
-            priceSort.value = ''; // Скидаємо сортування за ціною
+            priceSort.value = '';
         }
 
         if (priceSortValue === 'price-asc') {
@@ -283,36 +261,32 @@ document.addEventListener('DOMContentLoaded', () => {
             displayedCars.sort((a, b) => (b.brand + b.model).localeCompare(a.brand + a.model));
         }
 
-        displayCars(displayedCars); // Відображаємо відсортовані авто
+        displayCars(displayedCars);
     }
-
-    // --- Функції для "Обраного" ---
 
     function toggleFavorite(carId) {
         const index = favoriteCars.indexOf(carId);
         if (index > -1) {
-            favoriteCars.splice(index, 1); // Видалити, якщо вже є
+            favoriteCars.splice(index, 1);
         } else {
-            favoriteCars.push(carId); // Додати, якщо немає
+            favoriteCars.push(carId);
         }
-        localStorage.setItem('favoriteCars', JSON.stringify(favoriteCars)); // Зберігаємо в localStorage
-        updateFavoriteButtons(); // Оновлюємо вигляд кнопок
+        localStorage.setItem('favoriteCars', JSON.stringify(favoriteCars));
+        updateFavoriteButtons();
     }
 
     function addFavoriteButtonListeners() {
         document.querySelectorAll('.btn-favorite').forEach(button => {
-            // Видаляємо старі слухачі, щоб уникнути дублювання
             button.removeEventListener('click', handleFavoriteButtonClick);
             button.addEventListener('click', handleFavoriteButtonClick);
         });
     }
 
     function handleFavoriteButtonClick(event) {
-        event.preventDefault(); // Запобігаємо переходу по посиланню
-        event.stopPropagation(); // Запобігаємо спрацьовуванню кліку на картці
+        event.preventDefault();
+        event.stopPropagation();
         const carId = this.dataset.carId;
         toggleFavorite(carId);
-        // Оновлюємо клас кнопки, щоб відобразити стан
         this.classList.toggle('active', favoriteCars.includes(carId));
     }
 
@@ -327,8 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Функції для слайдера зображень (на картці) ---
-
     function initializeSliders() {
         document.querySelectorAll('.car-slider').forEach(slider => {
             const carId = slider.dataset.carId;
@@ -336,10 +308,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const images = car ? car.images : [];
 
             const sliderImagesContainer = slider.querySelector('.slider-images');
-            sliderImagesContainer.innerHTML = ''; // Очищаємо, щоб уникнути дублювання
+            sliderImagesContainer.innerHTML = '';
 
             if (!images || images.length === 0) {
-                sliderImagesContainer.innerHTML = `<img src="https://via.placeholder.com/286x200?text=No+Image" alt="Немає зображення">`;
+                sliderImagesContainer.innerHTML = `<img src="https://hips.hearstapps.com/hmg-prod/images/gallardo-31-6442d3da29a30.jpg" alt="Немає зображення">`;
                 return;
             }
 
@@ -354,14 +326,13 @@ document.addEventListener('DOMContentLoaded', () => {
             let currentIndex = 0;
 
             if (currentImages.length > 1) {
-                // Додаємо кнопки навігації, якщо їх немає і зображень більше 1
                 if (!slider.querySelector('.slider-nav-button.prev')) {
                     const prevBtn = document.createElement('button');
                     prevBtn.className = 'slider-nav-button prev';
                     prevBtn.innerHTML = '&#10094;';
                     slider.appendChild(prevBtn);
                     prevBtn.addEventListener('click', (e) => {
-                        e.stopPropagation(); // Запобігаємо спрацьовуванню кліку на картці
+                        e.stopPropagation();
                         currentIndex = (currentIndex > 0) ? currentIndex - 1 : currentImages.length - 1;
                         updateSlider();
                     });
@@ -373,13 +344,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     nextBtn.innerHTML = '&#10095;';
                     slider.appendChild(nextBtn);
                     nextBtn.addEventListener('click', (e) => {
-                        e.stopPropagation(); // Запобігаємо спрацьовуванню кліку на картці
+                        e.stopPropagation();
                         currentIndex = (currentIndex < currentImages.length - 1) ? currentIndex + 1 : 0;
                         updateSlider();
                     });
                 }
             } else {
-                // Видаляємо кнопки, якщо зображення одне
                 const prevBtn = slider.querySelector('.slider-nav-button.prev');
                 const nextBtn = slider.querySelector('.slider-nav-button.next');
                 if (prevBtn) prevBtn.remove();
@@ -391,21 +361,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 sliderImagesContainer.style.transform = `translateX(${-currentIndex * imageWidth}px)`;
             }
 
-            // Оновлюємо слайдер при зміні розміру вікна
-            window.removeEventListener('resize', updateSlider); // Запобігаємо дублюванню
+
+            window.removeEventListener('resize', updateSlider);
             window.addEventListener('resize', updateSlider);
-            updateSlider(); // Ініціалізація позиції слайдера
+            updateSlider();
         });
     }
 
 
-    // --- Функції для пагінації ---
-
     function updatePagination(totalCars) {
-        paginationControls.innerHTML = ''; // Очищаємо пагінацію
+        paginationControls.innerHTML = '';
         const pageCount = Math.ceil(totalCars / carsPerPage);
 
-        if (pageCount <= 1) return; // Не показуємо пагінацію, якщо сторінка одна
+        if (pageCount <= 1) return;
 
         for (let i = 1; i <= pageCount; i++) {
             const pageItem = document.createElement('li');
@@ -414,16 +382,13 @@ document.addEventListener('DOMContentLoaded', () => {
             pageItem.addEventListener('click', (event) => {
                 event.preventDefault();
                 currentPage = i;
-                displayCars(displayedCars); // Перемальовуємо картки для нової сторінки
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокручуємо до верху сторінки
+                displayCars(displayedCars);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
             paginationControls.appendChild(pageItem);
         }
     }
 
-    // --- Ініціалізація та слухачі подій ---
-
-    // Заповнюємо фільтри унікальними значеннями
     function populateFilters() {
         const brands = [...new Set(cars.map(car => car.brand))].sort();
         brands.forEach(brand => {
@@ -433,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
             brandFilter.appendChild(option);
         });
 
-        const years = [...new Set(cars.map(car => car.year))].sort((a, b) => b - a); // Сортуємо роки за спаданням
+        const years = [...new Set(cars.map(car => car.year))].sort((a, b) => b - a);
         years.forEach(year => {
             const option = document.createElement('option');
             option.value = year;
@@ -442,7 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Додаємо слухачі подій для фільтрів та сортування
     brandFilter.addEventListener('change', applyFiltersAndSearch);
     yearFilter.addEventListener('change', applyFiltersAndSearch);
     priceSort.addEventListener('change', applySorting);
@@ -453,20 +417,18 @@ document.addEventListener('DOMContentLoaded', () => {
         applyFiltersAndSearch();
     });
 
-    // Слухачі для нових полів діапазону
     minPriceInput.addEventListener('input', applyFiltersAndSearch);
     maxPriceInput.addEventListener('input', applyFiltersAndSearch);
     minMileageInput.addEventListener('input', applyFiltersAndSearch);
     maxMileageInput.addEventListener('input', applyFiltersAndSearch);
 
-    // Слухач для кнопки "Мої обрані" у навігації
     document.getElementById('favorites-link').addEventListener('click', (event) => {
         event.preventDefault();
         window.location.href = 'favorites.html';
     });
 
 
-    // Початкове завантаження
+
     populateFilters();
-    displayCars(cars); // Відображаємо всі авто при завантаженні сторінки
+    displayCars(cars);
 });
