@@ -1,16 +1,15 @@
-/* Додаємо стилі для блоку фільтрів та сортування */
 .controls {
     margin-bottom: 30px;
-    padding: 0 15px; /* Вирівнювання з контейнером */
+    padding: 0 15px;
 }
 
 .controls .form-select,
 .controls .form-control {
-    background-color: var(--secondary-dark-gray);
-    color: var(--text-color);
+    background-color: black;
+    color: white;
     border: 1px solid var(--border-color);
     padding: 0.75rem 1.25rem;
-    height: auto; /* Для Bootstrap 5 */
+    height: auto;
 }
 
 .controls .form-select option {
@@ -26,49 +25,47 @@
     box-shadow: 0 0 0 0.25rem rgba(var(--accent-red-rgb), 0.25);
 }
 
-/* Стилі для кнопки "Обране" (на картці) */
 .card-body .btn-favorite {
     background: none;
     border: none;
-    color: var(--text-color); /* Сірий колір за замовчуванням */
+    color: var(--text-color);
     font-size: 1.5rem;
-    position: absolute; /* Розміщуємо кнопку над карткою */
+    position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
     transition: color 0.2s ease;
     padding: 0;
-    z-index: 5; /* Щоб була над слайдером */
+    z-index: 5;
 }
 
 .card-body .btn-favorite:hover {
-    color: var(--accent-gold); /* Золотий при наведенні */
+    color: var(--accent-gold);
 }
 
 .card-body .btn-favorite.active {
-    color: var(--accent-red); /* Червоний, якщо додано до обраного */
+    color: var(--accent-red);
 }
 
-/* CSS для слайдера зображень (основа) */
 .car-slider {
     position: relative;
     width: 100%;
     overflow: hidden;
-    margin-bottom: 15px; /* Відступ від тексту картки */
-    height: 200px; /* Фіксована висота для контейнера слайдера */
+    margin-bottom: 15px;
+    height: 200px;
 }
 
 .slider-images {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    height: 100%; /* Забезпечуємо, що зображення заповнюють слайдер */
+    height: 100%;
 }
 
 .slider-images img {
     width: 100%;
-    height: 100%; /* Заповнюємо висоту контейнера */
-    object-fit: cover; /* Обрізаємо зображення, щоб воно заповнило весь простір */
-    flex-shrink: 0; /* Щоб зображення не стискалися */
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 .slider-nav-button {
@@ -82,7 +79,7 @@
     cursor: pointer;
     z-index: 10;
     font-size: 1.5rem;
-    line-height: 1; /* Для кращого вирівнювання символів стрілок */
+    line-height: 1;
 }
 
 .slider-nav-button.prev {
@@ -95,7 +92,6 @@
     border-radius: 5px 0 0 5px;
 }
 
-/* Стилі для пагінації */
 .pagination .page-item .page-link {
     background-color: var(--secondary-dark-gray);
     color: var(--text-color);
@@ -124,19 +120,13 @@
 .products-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Центруємо картки в ряду */
-    gap: 20px; /* Простір між картками */
+    justify-content: center;
+    gap: 20px;
     padding: 20px 0;
 }
 
 .card {
-    flex: 1 1 300px; /* Це ключова властивість */
-    /* flex: [flex-grow] [flex-shrink] [flex-basis] */
-    min-width: 280px; /* Мінімальна ширина для картки, щоб не була надто вузькою */
-    max-width: 320px; /* Максимальна ширина для картки, щоб не була надто широкою */
-    /* background-color: #f8f9fa; Опціонально: можеш залишити свій колір */
-    /* border: 1px solid #dee2e6; Опціонально: можеш залишити свій бордер */
-    /* border-radius: 0.25rem; Опціонально: можеш залишити свій border-radius */
+    flex: 1 1 300px;
+    min-width: 280px;
+    max-width: 320px;
 }
-
-/* Якщо у тебе є існуючі стилі для .card, перевір, чи немає конфліктів */
