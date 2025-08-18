@@ -203,4 +203,3 @@ document.addEventListener('DOMContentLoaded', () => {
     populateFilters();
     displayCars(cars);
 });
-
